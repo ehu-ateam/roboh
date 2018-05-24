@@ -1,4 +1,7 @@
 # Roboh
 
 ## Run Roboh Project
-./roboh$ python3 .
+```sh
+$ cd roboh/
+$ python3 .
+```

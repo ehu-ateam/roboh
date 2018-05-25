@@ -10,7 +10,7 @@
 To enable root privileges, you need create a new interpreter as follows:
 ```sh
 sudo visudo -f /etc/sudoers.d/python
-``
+```
 
 Add the following information:
 ```sh

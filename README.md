@@ -10,7 +10,7 @@
 To enable root privileges, you need create a new interpreter as follows:
 ```sh
 sudo visudo -f /etc/sudoers.d/python
-```
+``
 
 Add the following information:
 ```sh
@@ -40,11 +40,11 @@ chmod +x python-sudo.sh
 ```sh
 Settings/Preferences --> Find... --> Project Interpreter --> Engine(icon) --> Add.. --> SSH Interpreter
 ```
-> configuration example: Remote Python 2.7.9 (sftp://{USER}@{RPI-HOST}:22/home/{USER}/python-sudo.sh)
+> configuration example: Remote Python 2.7.9 (sftp://ateam@{RPI-HOST}:22/home/ateam/python-sudo.sh)
 
 Edit project configurations...
 ```sh
 script: /Users/{USER}/roboh/RPI-python
-interpreter: Remote Python 2.7.9 (sftp://{USER}@{RPI-HOST}:22/home/{USER}/python-sudo.sh)
+interpreter: Remote Python 2.7.9 (sftp://ateam@{RPI-HOST}:22/home/ateam/python-sudo.sh)
 working directory: /home/ateam/roboh/RPI-python
 ```

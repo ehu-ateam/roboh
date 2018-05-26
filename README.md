@@ -20,6 +20,8 @@ Add the following information:
 For example:
 ```sh
 asanchez asanchez-host = (root) NOPASSWD: /usr/bin/python
+
+
 ```
 
 Create a script called python-sudo.sh, containing (with your correct full python path):

@@ -46,7 +46,7 @@ Settings/Preferences --> Find... --> Project Interpreter --> Engine(icon) --> Ad
 
 Edit project configurations...
 ```sh
-script: /Users/{USER}/roboh/RPI-python
+script: /Users/{USER}/roboh/Robohend
 interpreter: Remote Python 2.7.9 (sftp://ateam@{RPI-HOST}:22/home/ateam/python-sudo.sh)
-working directory: /home/ateam/roboh/RPI-python
+working directory: /home/ateam/roboh/Robohend
 ```

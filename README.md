@@ -67,6 +67,7 @@ ssh-copy-id ateam@{RPI_HOST}
 
 ### PyCharm Edit project deployment...
 On your remote server (RPi) `mkdir /home/{user}/Robohend` before continue.
+
 Pycharm:
 ```sh
 Settings/Preferences ->

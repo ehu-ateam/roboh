@@ -35,18 +35,40 @@ Be sure to make the script executable:
 chmod +x python-sudo.sh
 ```
 
-## PyCharm Professional Interpreter remote interpreter configuration
+## PyCharm Professional Configuration
+### PyCharm Professional Interpreter remote interpreter configuration
 
 > See how to create a [remote interpreter](https://www.jetbrains.com/help/pycharm/configuring-remote-interpreters-via-ssh.html)
 
+Pycharm:
 ```sh
-Settings/Preferences --> Find... --> Project Interpreter --> Engine(icon) --> Add.. --> SSH Interpreter
+Settings/Preferences -> Find... -> Project Interpreter -> Engine(icon) --> Add.. -> rpi host and user -> password or ssh key* -> SSH Interpreter: /home/ateam/python-sudo.sh
 ```
 > configuration example: Remote Python 2.7.9 (sftp://ateam@{RPI-HOST}:22/home/ateam/python-sudo.sh)
+> * sshkey: first you have to and your public key to /home/ateam/.ssh/authorized_keys
 
-Edit project configurations...
+### Generating sh key
+Create ssh key
+```sh
+ssh-keygen # follow the instructions
+```
+
+Copy to remote host-rpi (authorized_keys)
+```sh
+ssh-copy-id ateam@{RPI_HOST}
+```
+
+### PyCharm Edit project deployment...
+On your remote server (RPi) `mkdir /home/{user}/Robohend` before continue.
+Pycharm:
+```sh
+Settings/Preferences -> Find... -> Deployment -> Mappings --> Local path: /home/{USER}/roboh/Robohend, Deployment path on server: /home/ateam/Robohend -> Apply -> OK
+```
+
+### PyCharm Edit project configurations...
+Pycharm:
 ```sh
 script: /Users/{USER}/roboh/Robohend
 interpreter: Remote Python 2.7.9 (sftp://ateam@{RPI-HOST}:22/home/ateam/python-sudo.sh)
-working directory: /home/ateam/roboh/Robohend
+working directory: /home/ateam/Robohend
 ```

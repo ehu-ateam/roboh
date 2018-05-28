@@ -42,7 +42,14 @@ chmod +x python-sudo.sh
 
 Pycharm:
 ```sh
-Settings/Preferences -> Find... -> Project Interpreter -> Engine(icon) --> Add.. -> rpi host and user -> password or ssh key* -> SSH Interpreter: /home/ateam/python-sudo.sh
+Settings/Preferences ->
+Find... ->
+Project Interpreter ->
+Engine(icon) ->
+Add.. ->
+rpi host and user ->
+password or ssh key* ->
+SSH Interpreter: /home/ateam/python-sudo.sh
 ```
 > configuration example: Remote Python 2.7.9 (sftp://ateam@{RPI-HOST}:22/home/ateam/python-sudo.sh)
 > * sshkey: first you have to and your public key to /home/ateam/.ssh/authorized_keys
@@ -62,7 +69,13 @@ ssh-copy-id ateam@{RPI_HOST}
 On your remote server (RPi) `mkdir /home/{user}/Robohend` before continue.
 Pycharm:
 ```sh
-Settings/Preferences -> Find... -> Deployment -> Mappings --> Local path: /home/{USER}/roboh/Robohend, Deployment path on server: /home/ateam/Robohend -> Apply -> OK
+Settings/Preferences ->
+Find... ->
+Deployment ->
+Mappings ->
+Local path: /home/{USER}/roboh/Robohend, Deployment path on server: /home/ateam/Robohend ->
+Apply ->
+OK
 ```
 
 ### PyCharm Edit project configurations...

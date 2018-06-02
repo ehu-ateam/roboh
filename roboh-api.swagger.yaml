@@ -1,0 +1,51 @@
+swagger: "2.0"
+info:
+  description: "This is the Roboh server."
+  version: "1.0.0"
+  title: "Swagger Roboh"
+host: "rpi"
+basePath: "/v1"
+schemes:
+- "http"
+paths:
+  /movement:
+    post:
+      tags:
+      - "movement"
+      summary: "Controls the roboh movement"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Movement object that needs to run"
+        required: true
+        schema:
+          $ref: "#/definitions/Movement"
+      responses:
+        405:
+          description: "Invalid input"
+definitions:
+  Movement:
+    type: "object"
+    required:
+    - "direction"
+    - "speed"
+    properties:
+      direction:
+        type: "integer"
+        format: "int32"
+        description: "left<0, 0 no direction, right>0" 
+        minimum: -100
+        maximum: 100
+      speed:
+        type: "integer"
+        format: "int32"
+        description: "backward<0, 0 stop, forward>0" 
+        minimum: -100
+        maximum: 100
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

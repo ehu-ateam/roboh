@@ -8,15 +8,11 @@
 
 <ion-content padding>
     <div class="buttons">
-        <button ion-button round (click)="test()">Say Hello</button>
-        <div>
-            <label>{{ result }}</label>
-        </div>
         <ion-grid>
             <ion-row>
                 <ion-col>
                     <ion-item>
-                        <ion-range min="-1" max="1" [(ngModel)]="direction" color="dark" snaps="true">
+                        <ion-range min="-1" max="1" [(ngModel)]="movement.direction" color="dark" snaps="true" (ionChange)="onChangeMovement()">
                             <ion-label range-left>left</ion-label>
                             <ion-label range-right>right</ion-label>
                         </ion-range>
@@ -24,7 +20,7 @@
                 </ion-col>
                 <ion-col>
                     <ion-item>
-                        <ion-range min="-1" max="1" [(ngModel)]="power" color="dark" snaps="true">
+                        <ion-range min="-1" max="1" [(ngModel)]="movement.speed" color="dark" snaps="true" (ionChange)="onChangeMovement()">
                             <ion-label range-left>Backward</ion-label>
                             <ion-label range-right>Foward</ion-label>
                         </ion-range>

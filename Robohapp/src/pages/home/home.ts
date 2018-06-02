@@ -1,29 +1,33 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { MovementService }  from "./../../services/movement.service";
+import { Component }        from "@angular/core";
+import { NavController }    from "ionic-angular";
 
-import { HttpClient }   from "@angular/common/http"
+import { MovementEntity }   from "../../entities";
 
 
 @Component({
-    selector: 'page-home',
-    templateUrl: 'home.html'
+    selector: "page-home",
+    templateUrl: "home.html"
 })
 export class HomePage {
 
-    public power: number = 0;
-    public direction: number = 0;
+    private _movement: MovementEntity;
 
     public result: string;
 
-    constructor(public navCtrl: NavController,
-                private http: HttpClient) {
-
+    get movement() {
+        return this._movement;
+    }
+    set movenent(value: MovementEntity) {
+        this._movement = value;
     }
 
-    public test() {
-        this.http.get("assets/config.json").subscribe((result) => {
-            console.log(result)
-            this.result = result["hello"];
-        }); 
+    constructor(public navCtrl: NavController,
+                private movementService: MovementService) {
+        this._movement = MovementEntity.create();
+    }
+
+    public onChangeMovement() {
+        this.movementService.moveRoboh(this._movement).subscribe(data => console.log(data));
     }
 }

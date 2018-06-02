@@ -1,8 +1,9 @@
+import { HttpModule }     from "@angular/http";
 import { BrowserModule }        from "@angular/platform-browser";
-import { ErrorHandler, 
+import { ErrorHandler,
          NgModule }             from "@angular/core";
-import { IonicApp, 
-         IonicErrorHandler, 
+import { IonicApp,
+         IonicErrorHandler,
          IonicModule }          from "ionic-angular";
 import { SplashScreen }         from "@ionic-native/splash-screen";
 import { StatusBar }            from "@ionic-native/status-bar";
@@ -10,7 +11,8 @@ import { MyApp }                from "./app.component";
 import { HomePage }             from "../pages/home/home";
 
 import { HttpClientModule,
-         HttpClient }           from "@angular/common/http"
+         HttpClient }           from "@angular/common/http";
+import { MovementService }      from "../services/movement.service";
 
 @NgModule({
     declarations: [
@@ -21,6 +23,7 @@ import { HttpClientModule,
         BrowserModule,
         IonicModule.forRoot(MyApp),
         HttpClientModule,
+        HttpModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -30,11 +33,12 @@ import { HttpClientModule,
     providers: [
         StatusBar,
         SplashScreen,
-        { 
-            provide: ErrorHandler, 
+        {
+            provide: ErrorHandler,
             useClass: IonicErrorHandler
         },
-        HttpClient
+        HttpClient,
+        MovementService,
     ]
 })
 export class AppModule {}

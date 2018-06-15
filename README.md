@@ -1,7 +1,29 @@
 # Roboh
 
-## RPI Python interpreter configuration
+# Robohend
 
+##Virtualenv interpreter
+
+### Install virtualenv
+
+```sh
+$ sudo apt-get install python
+# $ sudo apt-get install memcached
+$ sudo apt-get install virtualenv
+```
+
+### Create a virtualenv
+
+```sh
+$ cd
+$ mkdir ~/virtualenvs
+$ virtualenv -p /usr/bin/python virtualenvs/veroboh
+$ source ~/virtualenvs/veroboh/bin/activate
+$ pip install -r ~/Robohend/roboh_deps.txt
+$ deactivate
+```
+
+## RPI Python interpreter configuration
 
 ### Raspberry python interpreter as sudo
 
@@ -19,21 +41,21 @@ Add the following information:
 
 For example:
 ```sh
-asanchez asanchez-host = (root) NOPASSWD: /usr/bin/python
-
-
+asanchez asanchez-host = (root) NOPASSWD: /home/{USER}/virtualenvs/veroboh/bin/python
 ```
 
-Create a script called python-sudo.sh, containing (with your correct full python path):
+
+Create a script called python-sudo.sh, containing (with your correct full python path) in order to use its interpreter from a remote client:
 ```sh
 #!/bin/bash
-sudo /usr/bin/python "$@"
+sudo /home/{USER}/virtualenvs/veroboh/bin/python "$@"
 ```
 
 Be sure to make the script executable:
 ```sh
-chmod +x python-sudo.sh
+sudo chmod +x python-sudo.sh
 ```
+
 
 ## PyCharm Professional Configuration
 ### PyCharm Professional Interpreter remote interpreter configuration
@@ -47,7 +69,7 @@ Find... ->
 Project Interpreter ->
 Engine(icon) ->
 Add.. ->
-rpi host and user ->
+rpi {HOST} and {USER} ->
 password or ssh key* ->
 SSH Interpreter: /home/ateam/python-sudo.sh
 ```
@@ -66,7 +88,7 @@ ssh-copy-id ateam@{RPI_HOST}
 ```
 
 ### PyCharm Edit project deployment...
-On your remote server (RPi) `mkdir /home/{user}/Robohend` before continue.
+On your remote server (RPi) `mkdir /home/{USER}/Robohend` before continue.
 
 Pycharm:
 ```sh
@@ -74,7 +96,7 @@ Settings/Preferences ->
 Find... ->
 Deployment ->
 Mappings ->
-Local path: /home/{USER}/roboh/Robohend, Deployment path on server: /home/ateam/Robohend ->
+Local path: /home/{USER}/roboh/Robohend, Deployment path on server: /home/{USER}/Robohend ->
 Apply ->
 OK
 ```
@@ -82,7 +104,20 @@ OK
 ### PyCharm Edit project configurations...
 Pycharm:
 ```sh
-script: /Users/{USER}/roboh/Robohend
+script: /home/{USER}/virtualenvs/veroboh/bin/gunicorn
 interpreter: Remote Python 2.7.9 (sftp://ateam@{RPI-HOST}:22/home/ateam/python-sudo.sh)
 working directory: /home/ateam/Robohend
+```
+
+# Robohapp
+
+## Install
+> TODO: Ionic install documentation
+```sh
+npm install
+```
+
+## Run
+```sh
+ionic serve
 ```

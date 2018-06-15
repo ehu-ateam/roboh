@@ -1,0 +1,6 @@
+falcon==1.4.1
+falcon-cors==1.0.1
+gunicorn==19.8.1
+python-memcached==1.58
+python-mimeparse==1.6.0
+RPi.GPIO==0.6.3

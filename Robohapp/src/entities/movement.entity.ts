@@ -7,6 +7,6 @@ export class MovementEntity {
         return {
             speed: 0,
             direction: 0
-        }
+        };
     }
 }

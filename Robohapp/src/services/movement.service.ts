@@ -1,3 +1,4 @@
+import { MovementEntity }   from "./../entities";
 import { AppConfig }        from "./../config/app.config";
 import { Injectable }       from "@angular/core";
 import { Http,
@@ -8,7 +9,7 @@ import  "rxjs/add/operator/map";
 export class MovementService {
     constructor( private http: Http ) { }
 
-    public moveRoboh(movement) {
-        return this.http.post(AppConfig.API_ENDPOINT + "/movement", movement).map((res: Response) => res.json());
+    public moveRoboh(movement: MovementEntity) {
+        return this.http.post(AppConfig.API_ENDPOINT + "movement", movement).map((res: Response) => res.json());
     }
 }

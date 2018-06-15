@@ -1,1 +1,1 @@
-export { MovementEntity } from './movement.entity';
+export { MovementEntity } from "./movement.entity";

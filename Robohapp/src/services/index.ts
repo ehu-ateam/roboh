@@ -1,1 +1,1 @@
-export { MovementService }      from "./movement.service";
+export { MovementService }  from "./movement.service";

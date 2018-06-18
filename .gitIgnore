@@ -21,6 +21,7 @@ npm-debug.log*
 .sass-cache/
 .tmp/
 .versions/
+.editorconfig
 www/
 coverage/
 dist/

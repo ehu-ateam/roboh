@@ -1,5 +1,47 @@
 page-home {
-    .buttons {
+    .title-container {
         text-align: center;
+        .toolbar-title-md {
+            color: rgba(29, 94, 119, 0.7);
+        }
+    }
+    
+    .joysticks-container {
+        text-align: center;
+        .item-md.item-block .item-inner {
+            padding-right: 0;
+            border-bottom: none;
+            .input-wrapper {
+                background-color: rgba(146, 205, 228, .6);
+                color: white;
+                border-radius: 5px;
+                .label.label-md {
+                    margin: 0;
+                    .joystick-container {
+                        height: 350px;
+                        text-align: center;
+                        .joystick-title {
+                            margin: 10px;
+                            padding: 5px;
+                            border-radius: 5px;
+                            background-color: white;
+                            color: rgba(29, 94, 119, 0.7);
+                        }
+                        > virtual-joystick .virtual-joystick {
+                            border-radius: 5px;
+                            background-color: transparent;
+                            stick /deep/ circle {
+                                fill:  rgba(29, 94, 119, 0.7);
+                                stroke: rgba(29, 94, 119, 0.7);
+                            }
+                            .stick-base /deep/ circle {
+                                fill:  white;
+                                stroke: rgba(29, 94, 119, 0.7);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

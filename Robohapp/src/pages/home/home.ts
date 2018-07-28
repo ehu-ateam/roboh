@@ -1,7 +1,9 @@
-import { MovementService }  from "./../../services/movement.service";
-import { Component }        from "@angular/core";
-import { NavController }    from "ionic-angular";
-import { MovementEntity }   from "../../entities";
+import { MovementService } from "./../../services/movement.service";
+import { Component, OnInit } from "@angular/core";
+import { NavController } from "ionic-angular";
+import { MovementEntity } from "../../entities";
+import { Subject } from "rxjs/Subject";
+import "rxjs/add/operator/distinctUntilChanged";
 
 export interface IJoystick {
     deltaX: number;
@@ -12,9 +14,11 @@ export interface IJoystick {
     selector: "page-home",
     templateUrl: "home.html"
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
     private _movement: MovementEntity;
+    private speedControl: Subject<number>;
+    private directionControl: Subject<number>;
     public result: string;
     public wait: boolean = false;
 
@@ -26,22 +30,37 @@ export class HomePage {
     }
 
     constructor(public navCtrl: NavController,
-                private movementService: MovementService) {
+        private movementService: MovementService) {
         this._movement = MovementEntity.create();
+        this.speedControl = new Subject<number>();
+        this.directionControl = new Subject<number>();
+
+    }
+
+    public ngOnInit(): void {
+        this.speedControl
+            .asObservable()
+            .distinctUntilChanged((a, b) => Math.abs(a - b) < 10)
+            .subscribe(speed => {
+                this.movement.speed = speed;
+                this.onChangeMove();
+            });
+        this.directionControl
+            .asObservable()
+            .distinctUntilChanged((a, b) => Math.abs(a - b) < 10)
+            .subscribe(direction => {
+                this.movement.direction = direction;
+                this.onChangeMove();
+            });
+
     }
 
     public onChangeDirection(event: IJoystick) {
-        if (!this.wait) {
-            this._movement.direction = this.filtleValue(event.deltaX);
-            this.onChangeMove();
-        }
+        this.directionControl.next(this.filtleValue(event.deltaX));
     }
 
     public onChangeSpeed(event: IJoystick) {
-        if (!this.wait) {
-            this._movement.speed = this.filtleValue(event.deltaY);
-            this.onChangeMove();
-        }
+        this.speedControl.next(this.filtleValue(event.deltaY));
     }
 
     private filtleValue(value: number) {
@@ -55,10 +74,6 @@ export class HomePage {
     }
 
     private onChangeMove() {
-        this.wait = true;
-        setTimeout(() => {
-            this.movementService.moveRoboh(this._movement).subscribe(data => console.log(data));
-            this.wait = false;
-        }, 100);
+        this.movementService.moveRoboh(this._movement).subscribe(data => console.log(data));
     }
 }

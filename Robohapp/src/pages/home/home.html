@@ -13,7 +13,7 @@
                 <ion-item>
                     <div class="joystick-container">
                         <div class="joystick-title">Direction</div>
-                        <virtual-joystick (onChange)="onChangeDirection($event)"></virtual-joystick>
+                        <virtual-joystick (onChange)="onChangeDirection($event)" [resetOnRelease]="true"></virtual-joystick>
                     </div>
                 </ion-item>
             </ion-col>
@@ -21,7 +21,7 @@
                 <ion-item>
                     <div class="joystick-container">
                         <div class="joystick-title">Speed</div>
-                        <virtual-joystick (onChange)="onChangeSpeed($event)"></virtual-joystick>
+                        <virtual-joystick (onChange)="onChangeSpeed($event)" [resetOnRelease]="true"></virtual-joystick>
                     </div>
                 </ion-item>
             </ion-col>

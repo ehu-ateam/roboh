@@ -10,4 +10,3 @@ cors = CORS(allow_all_origins=True, allow_all_methods=True, allow_all_headers=Tr
 api = application = falcon.API(middleware=[cors.middleware])
 
 resources.add_routes(api)
-

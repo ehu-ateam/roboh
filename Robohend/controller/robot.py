@@ -8,6 +8,7 @@ from time import sleep
 
 
 class Robot:
+        
     def __init__(self):
 
         self.gpio_config = GPIOConfig()
@@ -33,11 +34,12 @@ class Robot:
         }
 
     def test_robot_motors(self):
+        s = 100
 
         print("START TEST")
 
         for motor in self.motors["ALL"]:
-            motor.move_forward()
+            motor.move_forward(s)
         sleep(1)
 
         for motor in self.motors["ALL"]:
@@ -45,7 +47,7 @@ class Robot:
         sleep(1)
 
         for motor in self.motors["ALL"]:
-            motor.move_backward()
+            motor.move_backward(s)
         sleep(1)
 
         for motor in self.motors["ALL"]:
@@ -90,12 +92,11 @@ class Robot:
 
         return True
 
-    # def start_daemon(self):
-    #     return Daemon(self.motors["ALL"])
-
     def interpreter(self, move):
         speed = move.speed
         direction = move.direction
+        s = abs(speed)
+
         if speed > 100 or speed < -100 or direction > 100 or direction < -100:
             return False
         if speed == MOVEMENTS.STOP:
@@ -104,21 +105,21 @@ class Robot:
         elif speed >= MOVEMENTS.FORWARD:
             if direction == MOVEMENTS.STRAIGHT:
                 for motor in self.motors["ALL"]:
-                    motor.move_forward()
+                    motor.move_forward(s)
             elif direction <= MOVEMENTS.LEFT:
                 self.motors["L"].stop()
-                self.motors["R"].move_forward()
+                self.motors["R"].move_forward(s)
             else:
                 self.motors["R"].stop()
-                self.motors["L"].move_forward()
+                self.motors["L"].move_forward(s)
         else:
             if direction == MOVEMENTS.STRAIGHT:
                 for motor in self.motors["ALL"]:
-                    motor.move_backward()
+                    motor.move_backward(s)
             elif direction <= MOVEMENTS.LEFT:
                 self.motors["L"].stop()
-                self.motors["R"].move_backward()
+                self.motors["R"].move_backward(s)
             else:
                 self.motors["R"].stop()
-                self.motors["L"].move_backward()
+                self.motors["L"].move_backward(s)
         return True

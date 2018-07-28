@@ -1,6 +1,7 @@
 """gunicorn server configuration."""
 
 import config.enviromnent as env
+import controller.robot as roboh
 
 #
 # Server socket

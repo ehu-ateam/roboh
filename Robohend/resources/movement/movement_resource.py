@@ -1,5 +1,6 @@
 from resources.movement import Movement
 from resources.roboh_resource import RobohResource
+import logging
 
 
 class MovementResource(RobohResource):  # extends RobohResource where are the falcon methods implemented
@@ -7,7 +8,9 @@ class MovementResource(RobohResource):  # extends RobohResource where are the fa
     def _on_post(self, req, resp, data):
 
         move = Movement(data["direction"], data["speed"])
-
-        r = self.roboh.interpreter(move)
-
-        return r
+        try:
+            return self.roboh.interpreter(move)
+        except Exception as e:
+            print(e)
+            logging.exception("error")
+            return False

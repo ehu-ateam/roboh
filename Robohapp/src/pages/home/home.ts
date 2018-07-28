@@ -40,14 +40,14 @@ export class HomePage implements OnInit {
     public ngOnInit(): void {
         this.speedControl
             .asObservable()
-            .distinctUntilChanged((a, b) => Math.abs(a - b) < 10)
+            .distinctUntilChanged(compareDelta)
             .subscribe(speed => {
                 this.movement.speed = speed;
                 this.onChangeMove();
             });
         this.directionControl
             .asObservable()
-            .distinctUntilChanged((a, b) => Math.abs(a - b) < 10)
+            .distinctUntilChanged(compareDelta)
             .subscribe(direction => {
                 this.movement.direction = direction;
                 this.onChangeMove();
@@ -75,5 +75,14 @@ export class HomePage implements OnInit {
 
     private onChangeMove() {
         this.movementService.moveRoboh(this._movement).subscribe(data => console.log(data));
+    }
+
+}
+
+function compareDelta(prev: number, current: number) {
+    if (Math.abs(current) >= 100 || current === 0) {
+        return prev === current;
+    } else {
+        return Math.abs(prev - current) < 10;
     }
 }

@@ -1,4 +1,4 @@
-import { MovementService } from "./../../services/movement.service";
+import { MovementService, ShutdownService } from "./../../services";
 import { Component, OnInit } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { MovementEntity } from "../../entities";
@@ -21,6 +21,7 @@ export class HomePage implements OnInit {
     private directionControl: Subject<number>;
     public result: string;
     public wait: boolean = false;
+    public status: boolean = false;
 
     get movement() {
         return this._movement;
@@ -30,7 +31,8 @@ export class HomePage implements OnInit {
     }
 
     constructor(public navCtrl: NavController,
-        private movementService: MovementService) {
+        private movementService: MovementService,
+        private shutdownService: ShutdownService) {
         this._movement = MovementEntity.create();
         this.speedControl = new Subject<number>();
         this.directionControl = new Subject<number>();
@@ -53,17 +55,18 @@ export class HomePage implements OnInit {
                 this.onChangeMove();
             });
 
+        this.testConnection();
     }
 
     public onChangeDirection(event: IJoystick) {
-        this.directionControl.next(this.filtleValue(event.deltaX));
+        this.directionControl.next(this.filterValue(event.deltaX));
     }
 
     public onChangeSpeed(event: IJoystick) {
-        this.speedControl.next(this.filtleValue(event.deltaY));
+        this.speedControl.next(this.filterValue(event.deltaY));
     }
 
-    private filtleValue(value: number) {
+    private filterValue(value: number) {
         if (value > 100) {
             return 100;
         } else if (value < -100) {
@@ -73,8 +76,30 @@ export class HomePage implements OnInit {
         }
     }
 
+    private testConnection() {
+        this.movement.speed = 0;
+        this.movement.direction = 0;
+        this.onChangeMove();
+    }
+
     private onChangeMove() {
-        this.movementService.moveRoboh(this._movement).subscribe(data => console.log(data));
+        this.movementService.moveRoboh(this._movement).subscribe(data => {
+            console.log(data);
+            this.status = data.content;
+        }, error => {
+            console.log("The api is down!");
+            this.status = false;
+        });
+    }
+
+    public onShutdown() {
+        this.shutdownService.shutdown().subscribe(data => {
+            console.log(data);
+            this.status = data.content;
+        }, error => {
+            console.log("The api is down!");
+            this.status = false;
+        });
     }
 
 }

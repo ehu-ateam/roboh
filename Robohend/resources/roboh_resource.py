@@ -3,6 +3,7 @@ from config import roboh_logger
 from comunications import RobohResponse
 from controller.robot import Robot
 import json
+import logging
 
 
 class RobohResource(object):
@@ -38,8 +39,10 @@ class RobohResource(object):
 
         try:
             content = func(req, resp, **mtd_kwargs)
-        except:
+        except Exception as e:
             status = 404
+            print(e)
+            logging.exception("error")
         finally:
             # builds a message to be sent to the FE
             msg = RobohResponse(req, status, content)

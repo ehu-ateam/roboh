@@ -1,0 +1,1 @@
+from resources.shutdown.shutdown_resource import ShutdownResource

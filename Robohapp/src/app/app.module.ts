@@ -12,6 +12,7 @@ import { HomePage }                 from "../pages/home/home";
 import { HttpClientModule,
          HttpClient }               from "@angular/common/http";
 import { MovementService }          from "../services/movement.service";
+import { ShutdownService }          from "../services/shutdown.service";
 import { NgxVirtualJoystickModule } from "ngx-virtual-joystick";
 
 @NgModule({
@@ -40,6 +41,7 @@ import { NgxVirtualJoystickModule } from "ngx-virtual-joystick";
         },
         HttpClient,
         MovementService,
+        ShutdownService,
     ]
 })
 export class AppModule {}

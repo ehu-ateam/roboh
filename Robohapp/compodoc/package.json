@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "doc": "./node_modules/.bin/compodoc -p app/src/tsconfig.app.json -n 'Roboh documentation' -s"
+    }
+}

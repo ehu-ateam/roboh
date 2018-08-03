@@ -1,0 +1,16 @@
+version: "3"
+services:
+  
+  appdoc:
+    build: ./Robohapp/compodoc
+    volumes:
+      - ./Robohapp:/app
+    ports:
+      - "4020:8080"
+
+  app:
+    build: ./Robohapp/
+    volumes:
+      - ./Robohapp:/app
+    ports:
+      - "4010:4010"

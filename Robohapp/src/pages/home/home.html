@@ -1,8 +1,24 @@
 <ion-header>
     <ion-navbar class="title-container">
-        <ion-title>
-            Roboh
-        </ion-title>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title>
+                        <div class="title-roboh">Roboh</div> 
+                        <div class="title-status-icon {{status ? 'powered-on': 'powered-off'}}">
+                            <ion-icon name="power"></ion-icon>
+                        </div>
+                    </ion-title>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="light" (click)="onShutdown()">
+                        Power off &nbsp;
+                        <ion-icon name="radio-button-off" ></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        
     </ion-navbar>
 </ion-header>
 

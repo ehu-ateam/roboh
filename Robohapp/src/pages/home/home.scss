@@ -2,7 +2,16 @@ page-home {
     .title-container {
         text-align: center;
         .toolbar-title-md {
+            .title-roboh, .title-status-icon {
+                display: inline-block;
+            }
             color: rgba(29, 94, 119, 0.7);
+            .powered-on {
+                color: rgba(97, 196, 40, 0.7);
+            }
+            .powered-off {
+                color: rgba(196, 40, 40, 0.7);
+            }
         }
     }
     
@@ -18,7 +27,7 @@ page-home {
                 .label.label-md {
                     margin: 0;
                     .joystick-container {
-                        height: 350px;
+                        height: 260px;
                         text-align: center;
                         .joystick-title {
                             margin: 10px;

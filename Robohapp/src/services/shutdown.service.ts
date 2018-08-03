@@ -1,4 +1,3 @@
-import { MovementEntity }   from "./../entities";
 import { AppConfig }        from "./../config/app.config";
 import { Injectable }       from "@angular/core";
 import { Http,
